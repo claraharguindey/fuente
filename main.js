@@ -20,7 +20,7 @@ const COIN_TYPES = {
   3: { label: "Un deseo", placeholder: "Un deseo para la fuente..." },
 };
 
-const aText = ["Te acercas a una fuente", "#", "Haz clic para mirar dentro"];
+const aText = ["Te acercas a una fuente", "#", "Haz scroll para mirar dentro"];
 const bText = ["Miras en tu bolsillo", "#", "Encuentras 3 monedas"];
 let delayTime = 0,
   delayAmount = 100;
