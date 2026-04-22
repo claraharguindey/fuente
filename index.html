@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fuente de los Deseos — Cauce</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="top" style="display: none; position: absolute; top: 0; height: 0"></div>
+
+    <header>
+      <a id="typedtext" href="#bottom" style="display: inline-block; color: black"></a>
+      <p id="secondtyped" style="display: block"></p>
+    </header>
+
+    <form id="coin-input" class="form">
+      <textarea maxlength="150" rows="5" id="response" placeholder="escribe aqui" required></textarea>
+      <button id="save-button" type="submit">Lanzar moneda</button>
+    </form>
+
+    <div id="gallery"></div>
+    <div id="coin-show"></div>
+
+    <div class="introGif-container" id="introGif">
+      <canvas id="fountainzoom"></canvas>
+    </div>
+
+    <div class="basin-container" id="basinDiv">
+      <div id="scrollTop-container">
+        <a href="#top" id="scrollTotop">---&gt;</a>
+      </div>
+      <div id="menu-container">
+        <ul style="list-style-type: none">
+          <li id="wish">Un aprendizaje</li>
+          <li id="poem">Una pregunta</li>
+          <li id="resource">Un deseo</li>
+        </ul>
+      </div>
+      <div class="entry-page"></div>
+      <div id="about-container">
+        <p>
+          La Fuente de los Deseos es donde el cauce llega a su estuario.<br /><br />
+          Esta fuente guarda aprendizajes, preguntas y deseos<br /><br />
+        </p>
+      </div>
+      <div id="bottom-container">
+        <div id="plus"><p>+</p></div>
+        <div id="minus" class="hide"><p>-</p></div>
+        <div id="about"><p>?</p></div>
+        <div id="about-close" class="hide"><p>+</p></div>
+        <div id="tossback"><p>Devolver</p></div>
+      </div>
+      <div id="nevermind"><p>Mejor no</p></div>
+    </div>
+
+    <div id="bottom" style="position: absolute; bottom: 0; top: 200vh"></div>
+    <div id="moneda-label"></div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
