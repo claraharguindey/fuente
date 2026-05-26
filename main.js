@@ -2,8 +2,12 @@ const GIF_FUENTE = "img/fountain.gif";
 const GIF_BASIN = "img/basin.gif";
 const IMG_MONEDA = "img/moneda.png";
 
+// MODO: "local" usa server.js + coins.json | "remote" usa JSONBin
+const MODE = "local";
+
 const JSONBIN_URL = "https://api.jsonbin.io/v3/b/69e8ddee856a6821895f3de3";
 const JSONBIN_KEY = "$2a$10$cac8SVE8FxIXP2f1VeuMU.4Sj.nYbdThz.pufZ4df/pYXI13d8SDa";
+const LOCAL_URL = "http://localhost:3000/coins";
 // =============================================
 
 document.getElementById("introGif").style.backgroundImage =
@@ -32,23 +36,29 @@ function typeWriter(textArray, typeDest) {
   });
 }
 
-// ── JSONBIN ────────────────────────────────────────────────
+// ── STORAGE ───────────────────────────────────────────────
 function getCoins() {
+  if (MODE === "local") {
+    return fetch(LOCAL_URL)
+      .then(function (r) { return r.json(); })
+      .catch(function () { return {}; });
+  }
   return fetch(JSONBIN_URL + "/latest", {
     headers: { "X-Master-Key": JSONBIN_KEY },
   })
-    .then(function (r) {
-      return r.json();
-    })
-    .then(function (d) {
-      return d.record || {};
-    })
-    .catch(function () {
-      return {};
-    });
+    .then(function (r) { return r.json(); })
+    .then(function (d) { return d.record || {}; })
+    .catch(function () { return {}; });
 }
 
 function saveCoins(coins) {
+  if (MODE === "local") {
+    return fetch(LOCAL_URL, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(coins),
+    });
+  }
   return fetch(JSONBIN_URL, {
     method: "PUT",
     headers: {
@@ -292,6 +302,11 @@ document.addEventListener("DOMContentLoaded", function () {
     addCoin(texto, currentName).then(function () {
       generateCoins();
     });
+  });
+
+  // Exportar JSON
+  document.getElementById("export-btn").addEventListener("click", function () {
+    exportLocalJSON();
   });
 
   // Scroll to top
